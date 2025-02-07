@@ -1,0 +1,50 @@
+sample_size: 10
+input_data_path: data/input/processed/processed_20241022_175122/cleaned_data_batch_2.json
+evaluation_criteria:
+- name: Sachliche Richtigkeit
+  description: '
+
+    0 Punkte: Der Text enthält sachliche Fehler, Ungenauigkeiten oder falsche Informationen.
+
+    1 Punkt: Der Text ist inhaltlich korrekt und frei von sachlichen Fehlern.'
+- name: Klarheit und Verständlichkeit
+  description: '
+
+    0 Punkte: Der Text ist unklar, verwirrend oder schwer verständlich formuliert.
+
+    1 Punkt: Der Text ist klar, präzise und leicht verständlich geschrieben.'
+- name: Objektivität
+  description: '
+
+    0 Punkte: Der Text enthält subjektive Meinungen, Wertungen oder voreingenommene
+    Aussagen.
+
+    1 Punkt: Der Text ist neutral und objektiv, ohne persönliche Meinungen oder Bias.'
+- name: Relevanz zum Thema
+  description: '
+
+    0 Punkte: Der Text passt nicht zum Thema oder bietet keine nützlichen Informationen
+    über das OER-Material.
+
+    1 Punkt: Der Text ist thematisch relevant und bietet hilfreiche Informationen
+    zum OER-Material.'
+- name: Struktur und angemessene Länge
+  description: '
+
+    0 Punkte: Der Text ist unstrukturiert, schwer zu folgen oder hat eine unangemessene
+    Länge (deutlich weniger als 100 oder mehr als 400 Zeichen mit Leertaste ohne nachvollziehbaren
+    Grund).
+
+    1 Punkt: Der Text ist logisch aufgebaut, mit klaren Absätzen und einem kohärenten
+    Fluss, und hat eine angemessene Länge (zwischen 50 und 400 Zeichen mit Leertaste).
+    Kann auch kürzer als 150 Zeichen sein, solang er prägnant und nachvollziehbar
+    ist. Länger als 400 Zeichen, falls nachvollziehbar bspw. weil ein technisches
+    Thema erklärungsbedürftig ist.'
+- name: Angemessene Sprache und Stil
+  description: '
+
+    0 Punkte: Der Text enthält werbliche Sprache, unpassende Inhalte oder irreführende
+    Links.
+
+    1 Punkt: Der Text verwendet sachliche Sprache und enthält keine werblichen oder
+    unpassenden Elemente.'
