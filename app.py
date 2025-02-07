@@ -13,16 +13,8 @@ import requests
 from typing import List, Dict, Any
 
 # Konfiguration
-MODEL_ID = os.getenv("MODEL_ID", "gpt-4o-mini")
-API_KEY = os.environ.get("OPENAI_API_KEY")  # Hole den Key aus den Systemumgebungsvariablen
+MODEL_ID = "gpt-4o-mini"  # Default Modell
 BASE_URL = os.environ.get("OPENAI_API_BASE", "https://api.openai.com/v1")  # Optional: Base URL
-
-# OpenAI Client initialisieren
-client = AsyncOpenAI(
-    api_key=API_KEY,
-    base_url=BASE_URL,
-    timeout=30.0  # Erhöhe Timeout für längere Verarbeitungszeiten
-)
 
 def load_criteria():
     """Lade Bewertungskriterien aus config.yaml"""
@@ -81,11 +73,11 @@ async def evaluate_text(text, model_id, api_key):
             criteria_format=criteria_format
         )
         
-        # Erstelle einen neuen Client mit dem aktuellen API Key
+        # Erstelle einen neuen Client mit dem API Key
         client = AsyncOpenAI(
-            base_url=os.getenv("BASE_URL"),
+            base_url=BASE_URL,
             api_key=api_key,
-            timeout=30.0  # Erhöhe Timeout auf 30 Sekunden
+            timeout=30.0
         )
         
         response = await client.chat.completions.create(
