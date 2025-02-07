@@ -413,28 +413,35 @@ def main():
         
         # Modellauswahl
         model_id = st.selectbox(
-            "LLM Modell",
-            ["gpt-4o-mini", "gpt-4o"],
-            index=0
+            "KI Modell auswählen",
+            options=["gpt-4o-mini", "gpt-4o"],
+            index=0,
+            help="Wählen Sie das zu verwendende KI-Modell aus"
         )
         
         # API Key Eingabe
         default_api_key = os.getenv("OPENAI_API_KEY", "")
         api_key = st.text_input(
-            "API Key (optional)",
+            "OpenAI API Key",
             value=default_api_key,
             type="password",
-            help="Leer lassen um den API Key aus den Umgebungsvariablen zu verwenden"
+            help="Der API Key wird aus der Umgebungsvariable OPENAI_API_KEY geladen, falls gesetzt. Alternativ können Sie hier einen Key eingeben."
         )
+        
+        # Verwende den eingegebenen API Key, falls vorhanden, sonst den aus den Umgebungsvariablen
+        if api_key:
+            API_KEY = api_key
+        elif default_api_key:
+            st.info("API Key aus Umgebungsvariable OPENAI_API_KEY geladen")
+            API_KEY = default_api_key
+        else:
+            API_KEY = None
         
         st.markdown("---")
         
         # Debug-Modus
         debug_mode = st.checkbox("Debug-Modus", value=False)
         st.session_state['debug_mode'] = debug_mode
-        
-        # Verwende den eingegebenen API Key, falls vorhanden, sonst den aus den Umgebungsvariablen
-        API_KEY = api_key if api_key else default_api_key
 
     if not API_KEY:
         st.error("Kein API-Key gefunden! Bitte geben Sie einen API-Key ein oder setzen Sie die Umgebungsvariable OPENAI_API_KEY.")
